@@ -1,5 +1,7 @@
 ## GAME OF LIFE
 
+![](assets/LifeGame.gif)
+
 ### Description
 Creating a [game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) for the NumWork calculators (N100 and N110) in python using the [Kandinsky package](https://www.numworks.com/fr/ressources/python/activites/kandinsky/).
 
