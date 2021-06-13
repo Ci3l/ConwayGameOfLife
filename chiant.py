@@ -12,3 +12,4 @@ for r in T:#des noms explicites (pr les variables)
 
 # Comment jmet en mode tableau ? :'( c'est un SOS
 #-> pr ça il te suffie t'ajouter un arg à print comme ça : print("a",end='') le end='' va empêcher le passage de ligne
+#T[ligne][colonne]
