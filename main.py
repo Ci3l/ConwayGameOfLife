@@ -6,7 +6,6 @@ length, width = 16,10
 lengthOfScreen, widthOfScreen = 320,200
 map = [[0 for x in range(length)] for y in range(width)]
 
-
 def initMap():
     for y in range(width):
         for x in range(length):
@@ -108,9 +107,8 @@ def logic(map):
             map[y][x] = newMap[y][x]
 
 
-def start():
+def start(generations = 8,length = 32, width = 20):
     initMap()
-    generations = input()
     printMap()
     draw_string("gen : 0",10,204)
     i = 1
