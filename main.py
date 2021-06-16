@@ -2,7 +2,7 @@ from kandinsky import *
 import random
 import time
 
-length, width = 16,10
+length, width = 40, 25
 lengthOfScreen, widthOfScreen = 320,200
 map = [[0 for x in range(length)] for y in range(width)]
 
