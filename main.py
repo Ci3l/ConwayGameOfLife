@@ -1,4 +1,3 @@
-from array import *
 import random
 import os
 import time
