@@ -3,7 +3,7 @@ import random
 import os
 import time
 
-length, width = 30, 30
+length, width = 10, 10
 map = [[0 for x in range(length)] for y in range(width)]
 
 def initMap():
