@@ -107,7 +107,7 @@ def logic(map):
             map[y][x] = newMap[y][x]
 
 
-def start(generations = 8,length = 32, width = 20):
+def start(generations = 8,length = 32, width = 20):#40*25
     initMap()
     printMap()
     draw_string("gen : 0",10,204)
