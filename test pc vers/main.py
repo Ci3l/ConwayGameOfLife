@@ -1,10 +1,6 @@
-
 import random
 import os
 import time
-
-length, width = 10, 10
-map = [[0 for x in range(length)] for y in range(width)]
 
 def initMap():
     for x in range(length):
@@ -83,8 +79,12 @@ def logic(map):
         for y in range(width):
             map[x][y] = newMap[x][y]
 
+generations = input("Enter the number of generations you want ")
+length = input("Enter the length of your board ")
+width = input("Enter the width of your board ")
+length,width = int(length),int(width)
+map = [[0 for x in range(length)] for y in range(width)]
 initMap()
-generations = input()
 i = 0
 while i <= int(generations) :
     time.sleep(1.16)
@@ -92,4 +92,5 @@ while i <= int(generations) :
     logic(map)
     print()
     printMap()
+    print("gen : {}".format(i))
     i += 1 
