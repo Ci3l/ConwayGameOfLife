@@ -1,6 +1,7 @@
 import random
 import os
 import time
+#the x and the y are inverted...I got to change this. @Ci3l (17/06/21)
 
 def initMap():
     for x in range(length):
