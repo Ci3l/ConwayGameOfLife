@@ -2,20 +2,19 @@ from kandinsky import *
 import random
 import time
 
-length, width = 40, 25
-lengthOfScreen, widthOfScreen = 320,200
-map = [[0 for x in range(length)] for y in range(width)]
+lengthOfScreen, widthOfScreen = 320,200 #the width isn't the real width of the screen because we need room to place the generation counter
 
-def initMap():
+def initMap(width, length, map):#init map randomly
     for y in range(width):
         for x in range(length):
             map[y][x] = random.randint(0, 1)
 
-def printMap():
+
+def printMap(width, length, map):  # draw the map in an adaptive way to fit in the screen
     squale = (320/length)
     squale = int(squale)
-    beginingX,beginingY,limitX,limitY = 0,0,squale,squale
-    pX, pY = 0, 0
+    beginingX,beginingY,limitX,limitY = 0,0,squale,squale#size of each pixel
+    pX, pY = 0, 0#the pointers
     for y in range(width):
         for x in range(length):
             if map[y][x] == 1:
@@ -32,15 +31,12 @@ def printMap():
         limitY = beginingY + squale
         beginingX = 0  
 
-
-
-def cleanMap():
+def cleanMap():#earase everything on the screen 
     for y in range(widthOfScreen):
         for x in range(lengthOfScreen):
             set_pixel(x, y, color(255, 255, 255))
 
-
-def logic(map):
+def logic(width, length, map):#aply the rules of the game 
     newMap = [[0 for x in range(length)] for y in range(width)]
     for y in range(width):
         for x in range(length):
@@ -104,18 +100,19 @@ def logic(map):
                 newMap[y][x] = 0
     for y in range(width):
         for x in range(length):
-            map[y][x] = newMap[y][x]
+            map[y][x] = newMap[y][x]  # merge the older vers with the new one
 
 
 def start(generations = 8,length = 32, width = 20):#40*25
-    initMap()
-    printMap()
+    map = [[0 for x in range(length)] for y in range(width)]
+    initMap(width, length, map)
+    printMap(width, length, map)
     draw_string("gen : 0",10,204)
     i = 1
     while i <= int(generations):
         time.sleep(1.16)
-        logic(map)
+        logic(width, length, map)
         cleanMap()
-        printMap()
+        printMap(width, length, map)
         draw_string("gen : {}".format(i),10, 204)
         i += 1
