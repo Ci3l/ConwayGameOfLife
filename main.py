@@ -2,15 +2,14 @@ from kandinsky import *
 import random
 import time
 
-lengthOfScreen, widthOfScreen = 320,200 #the width isn't the real width of the screen because we need room to place the generation counter
+length_of_screen, width_of_screen, living_cells, died_cells = 320,200,0,0 #the width isn't the real width of the screen because we need room to place the generation counter
 
-def initMap(width, length, map):#init map randomly
+def init_map(width, length, map):#init map randomly
     for y in range(width):
         for x in range(length):
             map[y][x] = random.randint(0, 1)
 
-
-def printMap(width, length, map):  # draw the map in an adaptive way to fit in the screen
+def print_map(width, length, map):  # draw the map in an adaptive way to fit in the screen
     squale = (320/length)
     squale = int(squale)
     beginingX,beginingY,limitX,limitY = 0,0,squale,squale#size of each pixel
@@ -31,13 +30,14 @@ def printMap(width, length, map):  # draw the map in an adaptive way to fit in t
         limitY = beginingY + squale
         beginingX = 0  
 
-def cleanMap():#earase everything on the screen 
-    for y in range(widthOfScreen):
-        for x in range(lengthOfScreen):
+def clean_map():#earase everything on the screen 
+    for y in range(width_of_screen):
+        for x in range(length_of_screen):
             set_pixel(x, y, color(255, 255, 255))
 
-def logic(width, length, map):#aply the rules of the game 
-    newMap = [[0 for x in range(length)] for y in range(width)]
+def logic(width, length, map, generation_counter):#aply the rules of the game 
+    new_map = [[0 for x in range(length)] for y in range(width)]
+    living_cells, died_cells = 0,0
     for y in range(width):
         for x in range(length):
             num = []
@@ -90,29 +90,32 @@ def logic(width, length, map):#aply the rules of the game
                 num.append(map[y][x-1])
                 num.append(map[y-1][x-1])
                 num.append(map[y-1][x])
-            livingCells = num.count(1)
+            living_cells_arround = num.count(1)
             diedCells = num.count(0)
-            if livingCells == 3:
-                newMap[y][x] = 1
-            if livingCells == 2 and map[y][x] == 1:
-                newMap[y][x] = 1
-            elif livingCells != 2 and livingCells != 3:
-                newMap[y][x] = 0
+            if living_cells_arround == 3:
+                new_map[y][x] = 1
+            if living_cells_arround == 2 and map[y][x] == 1:
+                new_map[y][x] = 1
+                living_cells += 1
+            elif living_cells_arround != 2 and living_cells_arround != 3:
+                new_map[y][x] = 0
+                died_cells += 1
     for y in range(width):
         for x in range(length):
-            map[y][x] = newMap[y][x]  # merge the older vers with the new one
-
+            map[y][x] = new_map[y][x]  # merge the older vers with the new one
+    draw_string("gen {}".format(generation_counter), 10, 204)
+    draw_string("died {}".format(died_cells), 80, 204)
+    draw_string("living {}".format(living_cells), 180, 204)
 
 def start(generations = 8,length = 32, width = 20):#40*25
     map = [[0 for x in range(length)] for y in range(width)]
-    initMap(width, length, map)
-    printMap(width, length, map)
-    draw_string("gen : 0",10,204)
-    i = 1
-    while i <= int(generations):
+    generation_counter = 1
+    init_map(width, length, map)
+    print_map(width, length, map)
+    draw_string("gen 0",10,204)
+    for i in range(1,generations):
         time.sleep(1.16)
-        logic(width, length, map)
-        cleanMap()
-        printMap(width, length, map)
-        draw_string("gen : {}".format(i),10, 204)
-        i += 1
+        logic(width, length, map, generation_counter)
+        clean_map()
+        print_map(width, length, map)
+        generation_counter += 1 ;
