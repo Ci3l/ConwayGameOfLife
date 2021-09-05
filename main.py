@@ -2,7 +2,7 @@ from kandinsky import *
 import random
 import time
 
-length_of_screen, width_of_screen, living_cells, died_cells = 320,200,0,0 #the width isn't the real width of the screen because we need room to place the generation counter
+length_of_screen, width_of_screen, living_cells = 320,200,0 #the width isn't the real width of the screen because we need room to place the generation counter
 
 def init_map(width, length, map):#init map randomly
     for y in range(width):
@@ -37,7 +37,7 @@ def clean_map():#earase everything on the screen
 
 def logic(width, length, map, generation_counter):#aply the rules of the game 
     new_map = [[0 for x in range(length)] for y in range(width)]
-    living_cells, died_cells = 0,0
+    living_cells = 0
     for y in range(width):
         for x in range(length):
             num = []
@@ -91,20 +91,20 @@ def logic(width, length, map, generation_counter):#aply the rules of the game
                 num.append(map[y-1][x-1])
                 num.append(map[y-1][x])
             living_cells_arround = num.count(1)
-            diedCells = num.count(0)
+            died_cells_around = num.count(0)
             if living_cells_arround == 3:
                 new_map[y][x] = 1
+                living_cells += 1
             if living_cells_arround == 2 and map[y][x] == 1:
                 new_map[y][x] = 1
                 living_cells += 1
             elif living_cells_arround != 2 and living_cells_arround != 3:
                 new_map[y][x] = 0
-                died_cells += 1
     for y in range(width):
         for x in range(length):
             map[y][x] = new_map[y][x]  # merge the older vers with the new one
     draw_string("gen {}".format(generation_counter), 10, 204)
-    draw_string("died {}".format(died_cells), 80, 204)
+    draw_string("died {}".format((width*length)-living_cells), 80, 204)
     draw_string("living {}".format(living_cells), 180, 204)
 
 def start(generations = 8,length = 32, width = 20):#40*25

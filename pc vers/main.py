@@ -3,6 +3,8 @@ import os
 import time
 #the x and the y are inverted...I got to change this. @Ci3l (17/06/21)
 
+living_cells = 0
+
 def init_map():
     for x in range(length):
         for y in range(width):
@@ -14,8 +16,9 @@ def print_map():
             print(' ' + str( map[x][y]),end= '')
         print()
 
-def logic(map):
+def logic(map,i,width,length):
     new_map = [[0 for x in range(length)] for y in range(width)]
+    living_cells = 0
     for x in range(length):
         for y in range(width):
             num = []
@@ -69,29 +72,29 @@ def logic(map):
                 num.append(map[x-1][y-1])
                 num.append(map[x-1][y])
             living_cells_arround = num.count(1)
-            diedCells = num.count(0)
+            died_cells_around = num.count(0)
             if living_cells_arround == 3 :
                 new_map[x][y] = 1
+                living_cells += 1
             if living_cells_arround == 2 and map[x][y] == 1:
                 new_map[x][y] = 1
+                living_cells += 1
             elif living_cells_arround != 2 and living_cells_arround != 3:
                 new_map[x][y] = 0
     for x in range(length):
         for y in range(width):
             map[x][y] = new_map[x][y]
+    print("gen : {}  died cells : {}  living cells : {}".format(i, (width*length)-living_cells, living_cells))
 
 generations = input("Enter the number of generations you want ")
 length = input("Enter the length of your board ")
 width = input("Enter the width of your board ")
-length,width = int(length),int(width)
+length,width,generations = int(length),int(width), int(generations)
 map = [[0 for x in range(length)] for y in range(width)]
 init_map()
-i = 0
-while i <= int(generations) :
+for i in range(generations) :
     time.sleep(1.16)
     os.system('cls')
-    logic(map)
+    logic(map,i,width,length)
     print()
     print_map()
-    print("gen : {}".format(i))
-    i += 1 
