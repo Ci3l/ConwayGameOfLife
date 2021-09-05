@@ -7,7 +7,7 @@ Creating a [game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
 ### Usage
 There's a pc version available if you need it in the 'pc vers' directory.
-About the NumWorks version, you can found it on the NumWorks website [here](https://my.numworks.com/python/ciel/conway) you just need to use the command below:
+About the NumWorks version, you can find it on the NumWorks website [here](https://my.numworks.com/python/ciel/conway) you just need to use the command below:
 ```
 start(generation, length, width)
 ```
