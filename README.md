@@ -1,24 +1,44 @@
-## GAME OF LIFE
+# Conway's Game of Life
 
 ![](assets/LifeGame.gif)
 
-### Description
-Creating a [game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) for NumWorks calculators (N 100 and N 110) in Python using [Kandinsky package](https://www.numworks.com/fr/ressources/python/activites/kandinsky/).
+## Description
 
-### Usage
-There's a pc version available if you need it in the 'pc vers' directory.
-About the NumWorks version, you can find it on the NumWorks website [here](https://my.numworks.com/python/ciel/conway) you just need to use the command below:
-```
+**Conway's [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)** is a classic cellular automaton simulation, implemented for NumWorks calculators (N 100 and N 110) using Python and the [Kandinsky package](https://www.numworks.com/fr/ressources/python/activites/kandinsky/). This project was created to enhance my skills in handling matrices in Python and to develop a functional script for my NumWorks calculator.
+
+## Features
+
+- **Matrix-Based Simulation:** Uses a matrix to represent the game grid, with cells evolving based on Conway's rules.
+- **Adaptive Display:** Dynamically adjusts the visualization to fit the screen of the NumWorks calculator.
+- **Customizable Parameters:** Allows for different grid sizes and generation counts.
+
+## Technologies
+
+- **Programming Language:** Python
+- **Libraries Used:** Kandinsky package for graphics on NumWorks calculators
+
+## Usage
+
+### NumWorks Calculator
+
+To run the game on a NumWorks calculator, you can use the built-in emulator or install the script directly on your calculator. The project can be tested using the integrated emulator on the NumWorks website [here](https://my.numworks.com/python/ciel/conway). The basic command to start the simulation is:
+
+```python
 start(generation, length, width)
 ```
-There are three sizes available:16/10; 32/20; 40/25
-And if you don't really need all these parameters, there are default values so you can also simply enter:
-```
+You can specify three grid sizes: 16x10, 32x20, and 40x25. If you don't specify parameters, default values will be used:
+```python
 start()
 ```
-### View Project
-If you want to test the project, you can go on the NumWorks website and test it on the integrated emulator [here](https://my.numworks.com/python/ciel/conway) (just click on the 'play logo'.) Or else you can use the PC version available in the 'pc vers' directory.
+### PC Version
+A PC version of the project is available in the pc vers directory for those who prefer to test it on a computer.
+
+### Demo
+To see the game in action, visit the NumWorks website and test the project on the integrated emulator [here](https://my.numworks.com/python/ciel/conway). Click on the 'play' icon to start the simulation. Alternatively, use the PC version available in the 'pc vers' directory.
 
 ### Participation
-Feel free to share your ideas about the project by [mail](poire.erwan2005@gmail.com) or do a little pull request or open an issue, I'll check ;)
+I welcome feedback and contributions to this project. Feel free to reach out via [email](mailto:poire.erwan2005@gmail.com), submit a pull request, or open an issue to share your thoughts or suggestions.
+
+### License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
